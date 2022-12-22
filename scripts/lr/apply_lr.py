@@ -75,7 +75,7 @@ print("Load optical catalogue")
 if os.path.exists(hdf_pruned_optical):
     combined = Table.read(hdf_pruned_optical)
 else:
-    os.makedirs()
+    print("Optical cat subset for this field is not yet created, proceeding to make now.")
     combined = Table.read(base_optical_catalogue)
     min_ra = np.min(lofar['RA'])-0.01
     max_ra = np.max(lofar['RA'])+0.01
@@ -263,13 +263,12 @@ for col in pwl.colnames:
         print("Colname is:", col)
     except:
         pass
-print("Save output")
+print("Save sourcelist LR output")
 pwl["RA_2"].name = "ra"
 pwl["DEC_2"].name = "dec"
 pwl["RA_1"].name = "RA"
 pwl["DEC_1"].name = "DEC"
 pwl.filled().write(srl_output, format="fits", overwrite=True)
-print("Final LR catalogue has the following columns:", pwl.colnames)
 
 # Run now for gaussian list
 res = parallel_process(idx_lofar_unique_gaus, ml_gaus, n_jobs=n_cpus)
@@ -298,12 +297,12 @@ for col in pwl.colnames:
         if (isinstance(fv, np.float64) and (fv != 1e+20)):
             print(col, fv)
             pwl[col].fill_value = 1e+20
-        print("Colname is:", col)
     except:
         pass
-print("Save output")
+print("Save Gaus LR output")
 pwl["RA_2"].name = "ra"
 pwl["DEC_2"].name = "dec"
 pwl["RA_1"].name = "RA"
 pwl["DEC_1"].name = "DEC"
 pwl.filled().write(gaus_output, format="fits", overwrite=True)
+print("Final LR catalogue has the following columns:", pwl.colnames)
