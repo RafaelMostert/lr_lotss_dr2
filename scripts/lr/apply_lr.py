@@ -28,13 +28,14 @@ CATALOGUE_PATH = os.getenv("CATALOGUE_PATH")
 PARAMS_PATH = os.getenv("PARAMS_PATH")
 THRESHOLD = os.getenv("LR_THRESHOLD")
 FIELD = os.getenv('FIELD')
+overwrite = bool(int(os.getenv('PIPE_OVERWRITE')))
 
 srl_input = os.path.join(FIELD_DATA,os.getenv('SRL_NAME'))
 gaus_input = os.path.join(FIELD_DATA,os.getenv('GAUS_NAME'))
 srl_output = os.path.join(FIELD_DATA,os.getenv('SRL_LR_NAME'))
 gaus_output = os.path.join(FIELD_DATA,os.getenv('GAUS_LR_NAME'))
-if os.path.exists(srl_output) and os.path.exists(gaus_output):
-    print("Likelihoodratios already calculated for this field.")
+if os.path.exists(srl_output) and os.path.exists(gaus_output) and not overwrite:
+    print("DONE: Calculated crossmatch likelihoodratios for all sources and gaussians.")
     exit()
 
 # Test
