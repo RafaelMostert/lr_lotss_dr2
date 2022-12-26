@@ -96,7 +96,7 @@ else:
         print("Combined optical cat does not contain sources for this field.\n"
                 "FAILED: The pipeline unsuccesfully ends here.")
         exit(1) # combined cat does not contain sources for this field
-    combined.write(hdf_pruned_optical, format="fits")
+    #combined.write(hdf_pruned_optical, format="fits")
 
 ## Get the coordinates
 coords_combined = SkyCoord(combined['RA'], 
