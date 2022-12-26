@@ -91,6 +91,11 @@ else:
     combined = combined[combined['DEC']> min_dec]
     print(f"Pruning optical cat step 4/4. (Seconds elapsed on prev step: {time()-start:.0f})")
     combined = combined[combined['DEC']< max_dec]
+    print("Final optical cat len:", len(combined))
+    if len(combined)==0:
+        print("Combined optical cat does not contain sources for this field.\n"
+                "FAILED: The pipeline unsuccesfully ends here.")
+        exit(1) # combined cat does not contain sources for this field
     combined.write(hdf_pruned_optical, format="fits")
 
 ## Get the coordinates
