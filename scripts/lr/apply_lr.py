@@ -14,6 +14,7 @@ from astropy import units as u
 
 BASE_LR_PATH = os.getenv('BASE_LR_PATH')
 FIELD_DATA = os.getenv('FIELD_DATA')
+TEMP_RESULTS = os.getenv('TEMP_RESULTS')
 sys.path.append(os.path.join(BASE_LR_PATH, 'src'))
 from mltier1 import MultiMLEstimator, parallel_process, get_sigma_all
 
@@ -32,8 +33,8 @@ overwrite = bool(int(os.getenv('PIPE_OVERWRITE')))
 
 srl_input = os.path.join(FIELD_DATA,os.getenv('SRL_NAME'))
 gaus_input = os.path.join(FIELD_DATA,os.getenv('GAUS_NAME'))
-srl_output = os.path.join(FIELD_DATA,os.getenv('SRL_LR_NAME'))
-gaus_output = os.path.join(FIELD_DATA,os.getenv('GAUS_LR_NAME'))
+srl_output = os.path.join(TEMP_RESULTS,os.getenv('SRL_LR_NAME'))
+gaus_output = os.path.join(TEMP_RESULTS,os.getenv('GAUS_LR_NAME'))
 if os.path.exists(srl_output) and os.path.exists(gaus_output) and not overwrite:
     print("DONE: Calculated crossmatch likelihoodratios for all sources and gaussians.")
     exit()
