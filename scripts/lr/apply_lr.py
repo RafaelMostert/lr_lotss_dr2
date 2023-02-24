@@ -63,10 +63,10 @@ radius = 15
 
 # %% 
 #bin_list, centers, Q_0_colour, n_m, q_m = params
-centers = np.mean([p[1] for p in params], axis=0)
-Q_0_colour = np.mean([p[2] for p in params], axis=0)
-n_m = np.mean([p[3] for p in params], axis=0)
-q_m = np.mean([p[4] for p in params], axis=0)
+centers = np.mean(np.array([p[1] for p in params],dtype=object), axis=0)
+Q_0_colour = np.mean(np.array([p[2] for p in params],dtype=object), axis=0)
+n_m = np.mean(np.array([p[3] for p in params],dtype=object), axis=0)
+q_m = np.mean(np.array([p[4] for p in params],dtype=object), axis=0)
 
 
 ## Load the catalogues
