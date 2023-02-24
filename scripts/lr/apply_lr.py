@@ -63,6 +63,7 @@ radius = 15
 
 # %% 
 #bin_list, centers, Q_0_colour, n_m, q_m = params
+print(params[0].info())
 centers = np.mean([p[1] for p in params], axis=0)
 Q_0_colour = np.mean([p[2] for p in params], axis=0)
 n_m = np.mean([p[3] for p in params], axis=0)
